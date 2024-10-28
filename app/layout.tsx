@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Script from "next/script";
 
 import{ Inter, Outfit} from "next/font/google";
+import ChatbotEmbed from "./dashboard/_components/Chatbot";
 
 const inter = Outfit({ subsets: ["latin"] });
 
@@ -36,25 +37,7 @@ export default function RootLayout({
         className={`${inter.className} ${inter.className} antialiased`}
       >
         {children}
-        <Script
-                  id="chatbase-config"
-                  strategy="beforeInteractive" // Load config before interaction
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                      window.embeddedChatbotConfig = {
-                      chatbotId: "ovbho5wpUTjf5qmaFHSIt",
-                      domain: "www.chatbase.co"
-                      };
-                    `,
-                  }}
-                />
-                <Script
-                  id="chatbase-script"
-                  src="https://www.chatbase.co/embed.min.js"
-                  chatbotId="ovbho5wpUTjf5qmaFHSIt"
-                  domain="www.chatbase.co"
-                  defer
-                />
+        <ChatbotEmbed />
       </body>
     </html>
     </ClerkProvider>
